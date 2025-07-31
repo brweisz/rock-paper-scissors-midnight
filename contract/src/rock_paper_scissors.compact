@@ -1,0 +1,103 @@
+pragma language_version 0.16;
+import CompactStandardLibrary;
+
+export enum GAME_STATE { deciding, proving, finished }
+export enum PLAY { rock, paper, scissors }
+
+export ledger game_state: GAME_STATE;
+export ledger encrypted_play_a: Maybe<Bytes<32>>;
+export ledger encrypted_play_b: Maybe<Bytes<32>>;
+export ledger clear_play_a: Maybe<[PLAY, Bytes<32>]>;
+export ledger clear_play_b: Maybe<[PLAY, Bytes<32>]>;
+export ledger winner: Bytes<32>;
+
+// Las jugadas encriptadas se componen por
+// hash( asdasd + (piedra|papel|tijera) + clave secreta de la jugada + nombre)
+
+constructor() {
+    set_initial_state();
+}
+
+export circuit set_initial_state(): [] {
+    game_state = GAME_STATE.deciding;
+    encrypted_play_a = none<Bytes<32>>();
+    encrypted_play_b = none<Bytes<32>>();
+    clear_play_a = none<[PLAY, Bytes<32>]>();
+    clear_play_b = none<[PLAY, Bytes<32>]>();
+    winner = pad(32, "NO WINNER YET");
+}
+
+witness localGameSecretKey(): Bytes<32>;
+
+export circuit choose_encrypted_a(play: PLAY, name: Bytes<32>): [] {
+    assert(game_state == GAME_STATE.deciding, "wrong moment to do that");
+    assert(encrypted_play_a == none<Bytes<32>>(), "that place is already taken");   
+    encrypted_play_a = some<Bytes<32>>(disclose(construct_secret_play(play, name, localGameSecretKey())));
+}
+
+export circuit choose_encrypted_b(play: PLAY, name: Bytes<32>): [] {
+    assert(game_state == GAME_STATE.deciding, "wrong moment to do that");
+    assert(encrypted_play_b == none<Bytes<32>>(), "that place is already taken");   
+    encrypted_play_b = some<Bytes<32>>(disclose(construct_secret_play(play, name, localGameSecretKey())));
+}
+
+export circuit construct_secret_play(play: PLAY, name: Bytes<32>, secret_key: Bytes<32>): Bytes<32> {
+    return persistentHash<[Bytes<32>, PLAY, Bytes<32>, Bytes<32>]>([pad(32, "basura"), play, secret_key, name]);
+}
+
+export circuit move_to_reveal(): [] {
+    assert(game_state == GAME_STATE.deciding, "wrong moment to do that");
+    assert(encrypted_play_a != none<Bytes<32>>(), "a move missing");
+    assert(encrypted_play_b != none<Bytes<32>>(), "b move missing");
+    game_state = GAME_STATE.proving;
+}
+
+export circuit reveal_a(play: PLAY, name: Bytes<32>): [] {
+    assert(game_state == GAME_STATE.proving, "wrong moment to do that");
+    assert(clear_play_a == none<[PLAY, Bytes<32>]>(), "the move is already revealed");
+    const obtained_secret: Bytes<32> = disclose(construct_secret_play(play, name, localGameSecretKey()));
+    assert(encrypted_play_a.value == obtained_secret, "todo mal con vos");
+    clear_play_a = disclose(some<[PLAY, Bytes<32>]>([play, name]));
+}
+
+export circuit reveal_b(play: PLAY, name: Bytes<32>): [] {
+    assert(game_state == GAME_STATE.proving, "wrong moment to do that");
+    assert(clear_play_b == none<[PLAY, Bytes<32>]>(), "the move is already revealed");
+    const obtained_secret: Bytes<32> = disclose(construct_secret_play(play, name, localGameSecretKey()));
+    assert(encrypted_play_b.value == obtained_secret, "todo mal con vos");
+    clear_play_b = disclose(some<[PLAY, Bytes<32>]>([play, name]));
+}
+
+export circuit compare_and_resolve(): [] {
+    assert(game_state == GAME_STATE.proving, "wrong moment to do that");
+    assert(clear_play_a != none<[PLAY, Bytes<32>]>(), "a didnt reveal");
+    assert(clear_play_b != none<[PLAY, Bytes<32>]>(), "b didnt reveal");
+    const move_b: PLAY = clear_play_b.value[0];
+    const move_a: PLAY = clear_play_a.value[0];
+    if (move_a == move_b) {
+        winner = pad(32, "TIE");
+    }
+    if (move_a == PLAY.rock){
+        if (move_b == PLAY.paper){ b_won(); } else { a_won(); }
+    } else if (move_a == PLAY.paper){
+        if (move_b == PLAY.rock){ a_won(); } else { b_won(); }
+    } else {
+        if (move_b == PLAY.rock){ b_won(); } else { a_won(); }
+    }
+
+    game_state = GAME_STATE.finished;
+}
+
+export circuit a_won(): [] {
+    winner = clear_play_a.value[1];
+}
+
+export circuit b_won(): [] {
+    winner = clear_play_b.value[1];
+}
+
+
+export circuit restart_game(): [] {
+    assert(game_state == GAME_STATE.finished, "wrong moment to do that");
+    set_initial_state();
+}
