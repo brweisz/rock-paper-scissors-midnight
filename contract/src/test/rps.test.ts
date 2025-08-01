@@ -96,12 +96,37 @@ describe("RPS smart contract", () => {
         const simulator = new RockPaperScissorsSimulator(userAPrivateKey);
         let userAPlay = PLAY.rock;
         let userAName = stringToBytes32("Bruno");
-        let userBPrivateKey = randomBytes(32);
-        let userBPlay = PLAY.paper;
-        let userBName = stringToBytes32("Carlo");
         simulator.choose_encrypted_a(userAPlay, userAName);
 
         expect(() => simulator.move_to_reveal()).toThrow("b move missing")
+    })
+
+    it("Users can reveal their moves and names", () => {
+        let userAPrivateKey = randomBytes(32);
+        const simulator = new RockPaperScissorsSimulator(userAPrivateKey);
+        let userAPlay = PLAY.rock;
+        let userAName = stringToBytes32("Bruno");
+
+        let userBPrivateKey = randomBytes(32);
+        let userBPlay = PLAY.paper;
+        let userBName = stringToBytes32("Carlo");
+
+        simulator.choose_encrypted_a(userAPlay, userAName);
+        simulator.switchUser(userBPrivateKey);
+        simulator.choose_encrypted_b(userBPlay, userBName);
+        simulator.move_to_reveal();
+
+        simulator.reveal_b(userBPlay, userBName);
+        simulator.switchUser(userAPrivateKey);
+        simulator.reveal_a(userAPlay, userAName);
+
+        let ledger = simulator.getLedger();
+        expect(ledger.game_state).toEqual(GAME_STATE.proving);
+        expect(ledger.clear_play_a.is_some).toBe(true);
+        expect(ledger.clear_play_b.is_some).toBe(true);
+        expect(ledger.clear_play_a.value).toEqual([userAPlay, userAName]);
+        expect(ledger.clear_play_b.value).toEqual([userBPlay, userBName]);
+
     })
 
 });
