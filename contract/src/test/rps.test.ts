@@ -65,11 +65,9 @@ describe("RPS smart contract", () => {
         const simulator = new RockPaperScissorsSimulator(userAPrivateKey);
         let userAPlay = PLAY.rock;
         let userAName = stringToBytes32("Bruno");
-        let expected_secret_play_A = simulator.construct_secret_play_from_key(userAPlay, userAName, userAPrivateKey);
         let userBPrivateKey = randomBytes(32);
         let userBPlay = PLAY.paper;
         let userBName = stringToBytes32("Carlo");
-        let expected_secret_play_B = simulator.construct_secret_play_from_key(userBPlay, userBName, userBPrivateKey);
         simulator.choose_encrypted_a(userAPlay, userAName);
         simulator.switchUser(userBPrivateKey);
         simulator.choose_encrypted_b(userBPlay, userBName);
@@ -79,5 +77,31 @@ describe("RPS smart contract", () => {
         expect(ledger.game_state).toEqual(GAME_STATE.proving);
     })
 
+    it("Users cannot play in the same slot", () => {
+        let userAPrivateKey = randomBytes(32);
+        const simulator = new RockPaperScissorsSimulator(userAPrivateKey);
+        let userAPlay = PLAY.rock;
+        let userAName = stringToBytes32("Bruno");
+        let userBPrivateKey = randomBytes(32);
+        let userBPlay = PLAY.paper;
+        let userBName = stringToBytes32("Carlo");
+        simulator.choose_encrypted_a(userAPlay, userAName);
+        simulator.switchUser(userBPrivateKey);
+
+        expect(() => simulator.choose_encrypted_a(userBPlay, userBName)).toThrow("that place is already taken")
+    })
+
+    it("Users cannot play in the same slot", () => {
+        let userAPrivateKey = randomBytes(32);
+        const simulator = new RockPaperScissorsSimulator(userAPrivateKey);
+        let userAPlay = PLAY.rock;
+        let userAName = stringToBytes32("Bruno");
+        let userBPrivateKey = randomBytes(32);
+        let userBPlay = PLAY.paper;
+        let userBName = stringToBytes32("Carlo");
+        simulator.choose_encrypted_a(userAPlay, userAName);
+
+        expect(() => simulator.move_to_reveal()).toThrow("b move missing")
+    })
 
 });
