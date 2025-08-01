@@ -11,3 +11,11 @@ export const randomBytes = (length: number): Uint8Array => {
   crypto.getRandomValues(bytes);
   return bytes;
 };
+
+export function stringToBytes32(str: string): Uint8Array {
+  const encoder = new TextEncoder();
+  const encoded = encoder.encode(str);
+  const bytes32 = new Uint8Array(32);
+  bytes32.set(encoded.slice(0, 32));
+  return bytes32;
+}

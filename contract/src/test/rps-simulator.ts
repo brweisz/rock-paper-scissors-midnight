@@ -116,17 +116,15 @@ export class RockPaperScissorsSimulator {
     return ledger(this.circuitContext.transactionContext.state);
   }
 
-  // Esto no aplica pero puede ayudar a construir lo que necesito
+  public construct_secret_play_from_key(play: PLAY, name: Uint8Array, secret_key: Uint8Array): Uint8Array {
+    return this.contract.circuits.construct_secret_play(
+        this.circuitContext,
+        play, name,
+        secret_key,
+    ).result;
+  }
 
-  // public publicKey(): Uint8Array {
-  //   const instance = convert_bigint_to_Uint8Array(
-  //     32,
-  //     this.getLedger().instance,
-  //   );
-  //   return this.contract.circuits.publicKey(
-  //     this.circuitContext,
-  //     this.getPrivateState().secretKey,
-  //     instance,
-  //   ).result;
-  // }
+  public construct_secret_play(play: PLAY, name: Uint8Array): Uint8Array {
+    return this.construct_secret_play_from_key(play, name, this.getPrivateState().localGameSecretKey);
+  }
 }
