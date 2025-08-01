@@ -3,7 +3,6 @@ import {
   QueryContext,
   sampleContractAddress,
   constructorContext,
-  convert_bigint_to_Uint8Array,
 } from "@midnight-ntwrk/compact-runtime";
 import {
   Contract,
