@@ -126,7 +126,62 @@ describe("RPS smart contract", () => {
         expect(ledger.clear_play_b.is_some).toBe(true);
         expect(ledger.clear_play_a.value).toEqual([userAPlay, userAName]);
         expect(ledger.clear_play_b.value).toEqual([userBPlay, userBName]);
-
     })
+
+    it("Game can be resolved", () => {
+        let userAPrivateKey = randomBytes(32);
+        const simulator = new RockPaperScissorsSimulator(userAPrivateKey);
+        let userAPlay = PLAY.rock;
+        let userAName = stringToBytes32("Bruno");
+
+        let userBPrivateKey = randomBytes(32);
+        let userBPlay = PLAY.paper;
+        let userBName = stringToBytes32("Carlo");
+
+        simulator.choose_encrypted_a(userAPlay, userAName);
+        simulator.switchUser(userBPrivateKey);
+        simulator.choose_encrypted_b(userBPlay, userBName);
+        simulator.move_to_reveal();
+        simulator.reveal_b(userBPlay, userBName);
+        simulator.switchUser(userAPrivateKey);
+        simulator.reveal_a(userAPlay, userAName);
+
+        simulator.compare_and_resolve();
+
+        let ledger = simulator.getLedger();
+        expect(ledger.game_state).toEqual(GAME_STATE.finished);
+        expect(ledger.winner).toEqual(userBName);
+    })
+
+    it("Game can be restarted once finished", () => {
+        let userAPrivateKey = randomBytes(32);
+        const simulator = new RockPaperScissorsSimulator(userAPrivateKey);
+        let userAPlay = PLAY.rock;
+        let userAName = stringToBytes32("Bruno");
+
+        let userBPrivateKey = randomBytes(32);
+        let userBPlay = PLAY.paper;
+        let userBName = stringToBytes32("Carlo");
+
+        simulator.choose_encrypted_a(userAPlay, userAName);
+        simulator.switchUser(userBPrivateKey);
+        simulator.choose_encrypted_b(userBPlay, userBName);
+        simulator.move_to_reveal();
+        simulator.reveal_b(userBPlay, userBName);
+        simulator.switchUser(userAPrivateKey);
+        simulator.reveal_a(userAPlay, userAName);
+        simulator.compare_and_resolve();
+        simulator.restart_game();
+
+        let ledger = simulator.getLedger();
+        expect(ledger.game_state).toEqual(GAME_STATE.deciding);
+        expect(ledger.encrypted_play_a.is_some).toEqual(false);
+        expect(ledger.encrypted_play_b.is_some).toEqual(false);
+        expect(ledger.clear_play_a.is_some).toEqual(false);
+        expect(ledger.clear_play_b.is_some).toEqual(false);
+        expect(ledger.winner).toEqual(stringToBytes32("NO WINNER YET"));
+    })
+
+
 
 });
