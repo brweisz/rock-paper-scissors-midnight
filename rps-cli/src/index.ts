@@ -376,7 +376,7 @@ const buildWalletAndWaitForFunds = async (
   logger: Logger,
   seed: string,
 ): Promise<Wallet & Resource> => {
-  const wallet = await WalletBuilder.buildFromSeed(
+  const wallet = await WalletBuilder.build(
     indexer,
     indexerWS,
     proofServer,
