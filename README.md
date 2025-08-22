@@ -4,6 +4,13 @@
 * run ```npm run compact``` 
 * run ```npm run build``` 
 * run ```npm run test```
-* Go to the rps-cli/ dir
+
+* For the CLI, go to the rps-cli/ dir
 * run ```npm run build```
 * execute it with ```npm run testnet-remote``` (tiene que estar el docker levantado)
+
+* For the UI, go to the rps-ui/ dir
+* run ```npm run build:watch```
+* Enjoy
+
+Note: IMPORTANT, you must be using a browser with your lace wallet connected in order to use the dApp
