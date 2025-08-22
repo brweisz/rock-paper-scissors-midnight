@@ -1,0 +1,26 @@
+{"level":30,"time":1755799710606,"pid":28448,"hostname":"juli-pc","msg":"Your wallet seed is: 687d423ee1a5b4e61f1eb9f25ae586c970821e623ca2d16f3fa872f7af12d0ec"}
+{"level":30,"time":1755799710607,"pid":28448,"hostname":"juli-pc","msg":"Your wallet address is: mn_shield-addr_test1pnjawl4v32xry5u5fc0sendfjsz08mfhpzxqdmkr3wvn0wed0qpsxqqr89synnwk2crgzpsqz2n5m0ynt80snqf0gwpln9zmqqpgftwm8vxyqztk"}
+{"level":30,"time":1755799710608,"pid":28448,"hostname":"juli-pc","msg":"Your wallet balance is: 0"}
+{"level":30,"time":1755799710609,"pid":28448,"hostname":"juli-pc","msg":"Waiting to receive tokens..."}
+{"level":30,"time":1755799710611,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed 0 indices, remaining unknown number"}
+{"level":30,"time":1755799721736,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799733676,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799745674,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799757783,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799769674,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799781745,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799793729,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799805674,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799817688,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799829771,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799841751,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799853671,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799865671,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799877675,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799889776,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799901759,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799913748,"pid":28448,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755799913749,"pid":28448,"hostname":"juli-pc","msg":"Your wallet balance is: 100000"}
+{"level":30,"time":1755799948996,"pid":28448,"hostname":"juli-pc","msg":"deployContract"}
+{"level":50,"time":1755799949089,"pid":28448,"hostname":"juli-pc","msg":"Found error 'java.lang.Throwable: Not sufficient funds to balance token: 02000000000000000000000000000000000000000000000000000000000000000000'"}
+{"level":30,"time":1755799949089,"pid":28448,"hostname":"juli-pc","msg":"Exiting..."}

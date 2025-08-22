@@ -1,0 +1,48 @@
+{"level":30,"time":1755800029672,"pid":28601,"hostname":"juli-pc","msg":"Your wallet seed is: cc4b9dc8a5afc94e8707d5482a062e43d3af15104cb64545a3c031b4016bab7d"}
+{"level":30,"time":1755800029673,"pid":28601,"hostname":"juli-pc","msg":"Your wallet address is: mn_shield-addr_test1dk6vv6gu9vmvrwzp9l6aqz74t0pnmenysdv7pza2wrlrlmywh0msxqrwdzcjx3j4gq70lnw9j6pnnchhg4zs5hehn6hzusy7vc2t3s3vdsh2cywy"}
+{"level":30,"time":1755800029674,"pid":28601,"hostname":"juli-pc","msg":"Your wallet balance is: 0"}
+{"level":30,"time":1755800029674,"pid":28601,"hostname":"juli-pc","msg":"Waiting to receive tokens..."}
+{"level":30,"time":1755800029677,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed 0 indices, remaining unknown number"}
+{"level":30,"time":1755800040547,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800052546,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800064542,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800076545,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800088544,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800100543,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800112545,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800124543,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800136543,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800148542,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800160544,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800172544,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800184540,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800196543,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800208537,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800220545,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800232543,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800244544,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800256542,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800268551,"pid":28601,"hostname":"juli-pc","msg":"Wallet processed true indices, remaining 0"}
+{"level":30,"time":1755800268552,"pid":28601,"hostname":"juli-pc","msg":"Your wallet balance is: 100000000"}
+{"level":30,"time":1755800277664,"pid":28601,"hostname":"juli-pc","msg":"deployContract"}
+{"level":30,"time":1755800302193,"pid":28601,"hostname":"juli-pc","msg":"Deployed contract at address: 020099c20199b07a4d74eeb04909d3c984e56ff12f1dd857f3eaf5ccbc480afaa195"}
+{"level":30,"time":1755800330744,"pid":28601,"hostname":"juli-pc","msg":"Current full state is: '{\"game_state\":0,\"encrypted_play_a\":{\"is_some\":false,\"value\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},\"encrypted_play_b\":{\"is_some\":false,\"value\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},\"clear_play_a\":{\"is_some\":false,\"value\":[0,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]},\"clear_play_b\":{\"is_some\":false,\"value\":[0,[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]},\"winner\":[78,79,32,87,73,78,78,69,82,32,89,69,84,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}'"}
+{"level":30,"time":1755801373700,"pid":28601,"hostname":"juli-pc","msg":"choose_encrypted_a: 0 - 74,117,108,105,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"}
+{"level":30,"time":1755801421258,"pid":28601,"hostname":"juli-pc","msg":"choose_encrypted_b: 0 - 74,117,108,105,68,101,78,117,101,118,111,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"}
+{"level":30,"time":1755801451289,"pid":28601,"hostname":"juli-pc","msg":"Moving to reveal phase"}
+{"level":30,"time":1755801451291,"pid":28601,"hostname":"juli-pc","msg":"move_to_reveal"}
+{"level":30,"time":1755801499748,"pid":28601,"hostname":"juli-pc","msg":"Select your previous move as Player A"}
+{"level":30,"time":1755801514262,"pid":28601,"hostname":"juli-pc","msg":"reveal_a: 0 - 74,117,108,105,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"}
+{"level":30,"time":1755801549648,"pid":28601,"hostname":"juli-pc","msg":"Select your previous move as Player B"}
+{"level":30,"time":1755801553957,"pid":28601,"hostname":"juli-pc","msg":"reveal_b: 0 - 74,117,108,105,68,101,78,117,101,118,111,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"}
+{"level":30,"time":1755801587650,"pid":28601,"hostname":"juli-pc","msg":"Comparing and resolving"}
+{"level":30,"time":1755801587651,"pid":28601,"hostname":"juli-pc","msg":"compare_and_resolve"}
+{"level":30,"time":1755801660634,"pid":28601,"hostname":"juli-pc","msg":"Current full state is: '{\"game_state\":2,\"encrypted_play_a\":{\"is_some\":true,\"value\":[141,59,188,57,197,85,240,147,219,66,118,103,170,143,229,215,104,183,73,55,199,93,85,178,15,49,116,219,63,23,239,29]},\"encrypted_play_b\":{\"is_some\":true,\"value\":[194,198,157,17,44,160,180,172,159,31,4,50,102,142,48,113,70,0,177,80,120,208,174,163,196,128,122,174,231,149,98,89]},\"clear_play_a\":{\"is_some\":true,\"value\":[0,[74,117,108,105,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]},\"clear_play_b\":{\"is_some\":true,\"value\":[0,[74,117,108,105,68,101,78,117,101,118,111,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]},\"winner\":[74,117,108,105,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}'"}
+{"level":30,"time":1755801840687,"pid":28601,"hostname":"juli-pc","msg":"Restarting game"}
+{"level":30,"time":1755801840688,"pid":28601,"hostname":"juli-pc","msg":"restart_game"}
+{"level":30,"time":1755801883447,"pid":28601,"hostname":"juli-pc","msg":"choose_encrypted_a: 1 - 74,117,108,105,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"}
+{"level":30,"time":1755801937371,"pid":28601,"hostname":"juli-pc","msg":"choose_encrypted_b: 2 - 74,117,108,105,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"}
+{"level":30,"time":1755801972796,"pid":28601,"hostname":"juli-pc","msg":"Comparing and resolving"}
+{"level":30,"time":1755801972798,"pid":28601,"hostname":"juli-pc","msg":"compare_and_resolve"}
+{"level":50,"time":1755801974811,"pid":28601,"hostname":"juli-pc","msg":"Found error 'failed assert: wrong moment to do that'"}
+{"level":30,"time":1755801974812,"pid":28601,"hostname":"juli-pc","msg":"Exiting..."}
