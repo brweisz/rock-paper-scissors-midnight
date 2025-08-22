@@ -304,6 +304,7 @@ const mainLoop = async (providers: RPSProviders, rli: Interface, logger: Logger)
   } finally {
     // While we allow errors to bubble up to the 'run' function, we will always need to dispose of the state
     // subscription when we exit.
+    await displayLedgerState(providers, rpsApi.deployedContract, logger);
     subscription.unsubscribe();
   }
 };
