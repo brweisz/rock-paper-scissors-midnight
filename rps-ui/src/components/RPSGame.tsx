@@ -47,6 +47,30 @@ import { GAME_STATE, PLAY } from '../../../contract/src/index';
 import { EmptyCardContent } from './Board.EmptyCardContent';
 import { stringToBytes32 } from '../../../contract/src/test/utils';
 
+// Helper function to convert Uint8Array to string
+const bytes32ToString = (bytes: Uint8Array): string => {
+  try {
+    const decoder = new TextDecoder('utf-8', { fatal: false });
+    const decoded = decoder.decode(bytes);
+    // Remove null bytes and trim
+    return decoded.replace(/\0+$/, '').trim();
+  } catch {
+    // If decoding fails, return hex representation
+    return Array.from(bytes)
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
+  }
+};
+
+// Helper function to format encrypted play value
+const formatEncryptedPlay = (bytes: Uint8Array): string => {
+  // Show first 8 characters of hex representation for encrypted values
+  const hex = Array.from(bytes.slice(0, 4))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+  return `${hex}...`;
+};
+
 /** The props required by the {@link RPSGame} component. */
 export interface RPSGameProps {
   /** The observable RPS deployment. */
@@ -89,7 +113,7 @@ export const RPSGame: React.FC<Readonly<RPSGameProps>> = ({ rpsDeployment$ }) =>
 
   // Callbacks to handle game actions
   const onChooseEncryptedA = useCallback(async () => {
-    if (!selectedPlay || !playerName) {
+    if (selectedPlay === null || selectedPlay === undefined || !playerName) {
       return;
     }
 
@@ -106,7 +130,7 @@ export const RPSGame: React.FC<Readonly<RPSGameProps>> = ({ rpsDeployment$ }) =>
   }, [deployedRPSAPI, selectedPlay, playerName]);
 
   const onChooseEncryptedB = useCallback(async () => {
-    if (!selectedPlay || !playerName) {
+    if (selectedPlay === null || selectedPlay === undefined || !playerName) {
       return;
     }
 
@@ -136,7 +160,7 @@ export const RPSGame: React.FC<Readonly<RPSGameProps>> = ({ rpsDeployment$ }) =>
   }, [deployedRPSAPI]);
 
   const onRevealA = useCallback(async () => {
-    if (!selectedPlay || !playerName) {
+    if (selectedPlay === null || selectedPlay === undefined || !playerName) {
       return;
     }
 
@@ -153,7 +177,7 @@ export const RPSGame: React.FC<Readonly<RPSGameProps>> = ({ rpsDeployment$ }) =>
   }, [deployedRPSAPI, selectedPlay, playerName]);
 
   const onRevealB = useCallback(async () => {
-    if (!selectedPlay || !playerName) {
+    if (selectedPlay === null || selectedPlay === undefined || !playerName) {
       return;
     }
 
@@ -269,14 +293,8 @@ export const RPSGame: React.FC<Readonly<RPSGameProps>> = ({ rpsDeployment$ }) =>
     }
   };
 
-  // Debug info
-  const isPlayDisabled = selectedPlay === null || playerName.trim() === '';
-  console.log('Debug info:', {
-    selectedPlay,
-    playerName,
-    playerNameTrimmed: playerName.trim(),
-    isPlayDisabled
-  });
+  // Check if play button should be disabled
+  const isPlayDisabled = selectedPlay === null || selectedPlay === undefined || playerName.trim() === '';
 
   return (
     <Card 
@@ -498,18 +516,37 @@ export const RPSGame: React.FC<Readonly<RPSGameProps>> = ({ rpsDeployment$ }) =>
                   </Box>
                 )}
 
-                <Box sx={{ mt: 2, p: 1, backgroundColor: 'rgba(0,0,0,0.1)', borderRadius: 1 }}>
-                  <Typography variant="caption" display="block" sx={{ color: '#333', fontWeight: 'bold' }}>
-                    Encrypted Play A: {gameState.encrypted_play_a.is_some ? 'Set' : 'Not set'}
+                <Box sx={{ mt: 2, p: 2, backgroundColor: 'rgba(0,0,0,0.1)', borderRadius: 1 }}>
+                  <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 'bold', mb: 1 }}>
+                    Public Ledger State:
                   </Typography>
-                  <Typography variant="caption" display="block" sx={{ color: '#333', fontWeight: 'bold' }}>
-                    Encrypted Play B: {gameState.encrypted_play_b.is_some ? 'Set' : 'Not set'}
+                  
+                  <Typography variant="caption" display="block" sx={{ color: '#333', fontWeight: 'bold', mb: 0.5 }}>
+                    Encrypted Play A: {gameState.encrypted_play_a.is_some 
+                      ? formatEncryptedPlay(gameState.encrypted_play_a.value)
+                      : 'Not set'}
                   </Typography>
-                  <Typography variant="caption" display="block" sx={{ color: '#333', fontWeight: 'bold' }}>
-                    Clear Play A: {gameState.clear_play_a.is_some ? 'Revealed' : 'Not revealed'}
+                  
+                  <Typography variant="caption" display="block" sx={{ color: '#333', fontWeight: 'bold', mb: 0.5 }}>
+                    Encrypted Play B: {gameState.encrypted_play_b.is_some 
+                      ? formatEncryptedPlay(gameState.encrypted_play_b.value)
+                      : 'Not set'}
                   </Typography>
+                  
+                  <Typography variant="caption" display="block" sx={{ color: '#333', fontWeight: 'bold', mb: 0.5 }}>
+                    Clear Play A: {gameState.clear_play_a.is_some 
+                      ? `${getPlayText(gameState.clear_play_a.value[0])} by ${bytes32ToString(gameState.clear_play_a.value[1])}`
+                      : 'Not revealed'}
+                  </Typography>
+                  
+                  <Typography variant="caption" display="block" sx={{ color: '#333', fontWeight: 'bold', mb: 0.5 }}>
+                    Clear Play B: {gameState.clear_play_b.is_some 
+                      ? `${getPlayText(gameState.clear_play_b.value[0])} by ${bytes32ToString(gameState.clear_play_b.value[1])}`
+                      : 'Not revealed'}
+                  </Typography>
+                  
                   <Typography variant="caption" display="block" sx={{ color: '#333', fontWeight: 'bold' }}>
-                    Clear Play B: {gameState.clear_play_b.is_some ? 'Revealed' : 'Not revealed'}
+                    Winner: {bytes32ToString(gameState.winner)}
                   </Typography>
                 </Box>
               </Box>
