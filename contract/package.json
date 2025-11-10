@@ -15,7 +15,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc --project tsconfig.build.json && cp -Rf ./src/managed ./dist/managed && cp ./src/rock_paper_scissors.compact ./dist",
     "ci": "npm run compact && npm run typecheck && npm run lint && npm run build && npm run test",
-    "compact": "compactc src/rock_paper_scissors.compact ./src/managed/rock_paper_scissors",
+    "compact": "compact compile src/rock_paper_scissors.compact ./src/managed/rock_paper_scissors",
     "lint": "eslint src",
     "prepack": "npm build",
     "test": "vitest",
